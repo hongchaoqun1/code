@@ -1,0 +1,82 @@
+<html>
+
+<head>
+<link rel="stylesheet" type="text/css" href = "{{ url_for('static',filename = 'css/style.css')}}">
+<script type="text/javascript" src="{{ url_for('static',filename = 'js/cufon-yui.js')}}"></script>
+<script type="text/javascript" src="{{ url_for('static',filename = 'js/arial.js')}}"></script>
+<script type="text/javascript" src="{{ url_for('static',filename = 'js/cuf_run.js')}}"></script>
+</head>
+<body>
+<div class="header" style="background-image:url(static/images/header_bg.jpg);">
+    <div class="header_resize">
+      <div class="menu_nav">
+        <ul>
+          <li class="active"><a href="index.html">主页</a></li>
+          <li><a href="support.html">支持</a></li>
+          <li><a href="about.html">关于我们</a></li>
+          <li><a href="blog.html">博客</a></li>
+          <li><a href="contact.html">联系我们</a></li>
+        </ul>
+        <div class="clr"></div>
+      </div>
+      <div class="clr"></div>
+      <div class="logo"><h1><a href="index.html"><cufon class="cufon cufon-canvas" alt="Blue " style="width: 118px; height: 40px;"><canvas width="204" height="54" style="width: 204px; height: 54px; top: -8px; left: -27px;"></canvas><cufontext>群 </cufontext></cufon><cufon class="cufon cufon-canvas" alt="Carbon" style="width: 174px; height: 40px;"><canvas width="242" height="54" style="width: 242px; height: 54px; top: -8px; left: -27px;"></canvas><cufontext>博客</cufontext></cufon><br><small><cufon class="cufon cufon-canvas" alt="put " style="width: 38px; height: 16px;"><canvas width="72" height="22" style="width: 72px; height: 22px; top: -3px; left: -11px;"></canvas><cufontext>put </cufontext></cufon><cufon class="cufon cufon-canvas" alt="your " style="width: 53px; height: 16px;"><canvas width="87" height="22" style="width: 87px; height: 22px; top: -3px; left: -11px;"></canvas><cufontext>your </cufontext></cufon><cufon class="cufon cufon-canvas" alt="slogan " style="width: 74px; height: 16px;"><canvas width="108" height="22" style="width: 108px; height: 22px; top: -3px; left: -11px;"></canvas><cufontext>slogan </cufontext></cufon><cufon class="cufon cufon-canvas" alt="here" style="width: 46px; height: 16px;"><canvas width="75" height="22" style="width: 75px; height: 22px; top: -3px; left: -11px;"></canvas><cufontext>here</cufontext></cufon></small></a></h1></div>
+    </div>
+ </div>
+ 
+ <div>
+ {% for message in get_flashed_messages() %}
+                  <div class="alert alert-warning">
+                   <button type="button" class="close" data-dismiss="alert">&times;</button>
+                  {{ message }}
+                  </div>
+              {% endfor %}
+ </div>
+{% block content %}
+  
+{% endblock %} 
+ 
+ <div class="fbg">
+    <div class="fbg_resize">
+      <div class="col c1">
+        <h2><cufon class="cufon cufon-canvas" alt="About" style="width: 63px; height: 24px;"><canvas width="115" height="32" style="width: 115px; height: 32px; top: -5px; left: -16px;"></canvas><cufontext>About</cufontext></cufon></h2>
+        <img src="static/images/white.jpg" width="66" height="66" alt="pix">
+        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec libero. Suspendisse bibendum. Cras id urna. Morbi tincidunt, orci ac convallis aliquam, lectus turpis varius lorem, eu posuere nunc justo tempus leo. llorem, eu posuere nunc justo tempus leo. Donec mattis, purus nec placerat bibendum. <a href="#">Learn more...</a></p>
+      </div>
+      <div class="col c2">
+        <h2><cufon class="cufon cufon-canvas" alt="Lorem " style="width: 75px; height: 24px;"><canvas width="127" height="32" style="width: 127px; height: 32px; top: -5px; left: -16px;"></canvas><cufontext>Lorem </cufontext></cufon><cufon class="cufon cufon-canvas" alt="Ipsum" style="width: 66px; height: 24px;"><canvas width="104" height="32" style="width: 104px; height: 32px; top: -5px; left: -16px;"></canvas><cufontext>Ipsum</cufontext></cufon></h2>
+        <ul class="sb_menu">
+          <li><a href="#">consequat molestie</a></li>
+          <li><a href="#">sem justo</a></li>
+          <li><a href="#">semper</a></li>
+          <li><a href="#">magna sed purus</a></li>
+          <li><a href="#">tincidunt</a></li>
+        </ul>
+      </div>
+      <div class="col c3">
+        <h2><cufon class="cufon cufon-canvas" alt="Contact" style="width: 83px; height: 24px;"><canvas width="135" height="32" style="width: 135px; height: 32px; top: -5px; left: -16px;"></canvas><cufontext>Contact</cufontext></cufon></h2>
+        <p>Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat.</p>
+        <p><strong>Phone:</strong> +1234567<br>
+          <strong>Address:</strong> 123 TemplateAccess Rd<br>
+          <strong>E-mail:</strong> <a href="mailto:info@example.com">info@example.com</a></p>
+      </div>
+      <div class="clr"></div>
+    </div>
+  </div>
+ 
+ <div class="footer">
+    <div class="footer_resize">
+      <p class="lf">© Copyright MyWebSite. Designed from <a href="http://www.cssmoban.com">网站模板</a></p>
+      <ul class="fmenu">
+        <li class="active"><a href="index.html">Home</a></li>
+        <li><a href="support.html">Support</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="contact.html">Contacts</a></li>
+      </ul>
+      <div class="clr"></div>
+    </div>
+  </div>
+ 
+ </body>
+ </html>

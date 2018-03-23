@@ -1,0 +1,26 @@
+{% extends "header.html" %}
+{% block content %}
+  <div class="content">
+    <div class="content_resize">
+      <div class="mainbar">
+	       <div class="article">
+            <h2><span><cufon class="cufon cufon-canvas" alt="Contact" style="width: 83px; height: 24px;"><canvas width="135" height="32" style="width: 135px; height: 32px; top: -5px; left: -16px;"></canvas><cufontext>Contact</cufontext></cufon></span></h2>
+            <p>You can find more of my free template designs at my website. For premium commercial designs, you can check out 网站模板.com.</p>
+           </div>
+		   <div>
+		   
+              
+           </div>
+	       <form method="post">
+           {{ form.hidden_tag() }}
+           {{ form.name.label }} {{ form.name() }}
+           {{ form.submit() }}
+           </form>
+	  </div>
+	  <div class="sidebar">
+	  </div >
+	  <div class="clr">
+	  </div>
+	</div>
+  </div>
+{% endblock %}
