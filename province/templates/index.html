@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+     <meta charset="utf-8">
+     <title>省市区县查询</title>
+     <link rel="stylesheet" type="text/css" href = "{{ url_for('static',filename = 'css/bootstrap.min.css')}}">
+	 <link rel="stylesheet" type="text/css" href = "{{ url_for('static',filename = 'css/demo.css')}}">
+	<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script type=text/javascript>
+      $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+    </script>
+  </head>
+  <body>
+    <!-- 导航栏 -->
+    <nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">中国地域查询系统</a>
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="#"><span class="glyphicon glyphicon-user"></span> 注册</a></li>
+      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> 登录</a></li>
+    </ul>
+    </div>
+    </nav>
+    
+	 
+	 
+	 <div class="container">
+            <div class="flip-container"><div class="flipper">
+			<div class="front">
+			<form class="contact" id="form" action="#" method="post">
+                    
+		    <div class="form-group">
+		        <label for="name">选择列表</label>
+		        <select class="form-control" id="s1">
+			         
+		        </select>
+				<div class="span10 offset2" style="margin-left:auto" >
+                    <input name="submit" class="submit" id="but" type="submit" value="点 击 开 始">
+                </div>
+		        
+	        </div>
+            </form>
+			</div>
+    </div>
+	 
+	 <script>
+	    $(function(){
+		alert("开始查询");
+		  $("#but").click(function(){
+		    $.getJSON($SCRIPT_ROOT + '/num',{
+			   a:0,b:-1
+			 },function(data){
+			    var result = data.result;
+			    make_up(result,"#s1",'ProvinceID','ProvinceName');
+			 });
+			  return false;
+		  });
+		  	
+		  
+		
+		/*
+		function make_up(data){
+		    for( i of data){
+			   console.log(i);
+			}
+		}
+		*/
+		//处理函数
+		function make_up(data,where,cID,cName){
+		  $(where).append("<option value=-1></option>");
+		  $.each(data,function(){
+		    var name = $(this)[0][cName];
+			var ID = $(this)[0][cID];
+			var lable = "<option value="+"'"+ID+"'"+">"+name+"</option>" ;
+			
+			$(where).append(lable);
+		  })
+		}
+		
+		//委托事件1
+		
+		$(document.body).delegate('#s1','change',function(){
+		   var value = Number($("#s1 option:selected").val());
+		   
+		     $("#s2").empty();
+			 $("#s3").empty();
+			 
+		   if($("#s2").length > 0){
+		      $.getJSON($SCRIPT_ROOT + '/num',{
+			   a:value,b:-1
+			   },function(data){
+			    var result = data.result;
+			    make_up(result,"#s2",'CityID','CityName');
+			});
+		   }else{
+		      $("#s1").after('<br/><select class="form-control" id="s2"></select>');
+		      $.getJSON($SCRIPT_ROOT + '/num',{
+			   a:value,b:-1
+			  },function(data){
+			    var result = data.result;
+			    make_up(result,"#s2",'CityID','CityName');
+			});
+		   };
+		  
+		});
+		
+		//委托事件2
+		
+		$(document.body).delegate("#s2",'change',function(){
+		    var value = Number($("#s2 option:selected").val());
+			
+			$("#s3").empty();
+			
+			if($("#s3").length > 0){
+			  $.getJSON($SCRIPT_ROOT + '/num',{
+			    b:value,a:-1
+			  },function(data){
+			    var result = data.result;
+				make_up(result,"#s3",'DistrictID','DistrictName');
+			  });
+			}else{
+			  $("#s2").after("<br/><select class='form-control' id='s3'></select>");
+			  $.getJSON($SCRIPT_ROOT + '/num',{
+			   b:value,a:-1
+			  },function(data){
+			    var result = data.result;
+			    make_up(result,"#s3",'DistrictID','DistrictName');
+			});
+			};
+		});
+		
+	})	
+
+	   
+	 </script>
+  </body>
+</html>
